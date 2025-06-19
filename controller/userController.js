@@ -50,18 +50,18 @@ module.exports.updateUserById = aysncHandler(async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     req.body.password = await bcrypt.hash(req.body.password, salt);
 
-    const updateUser = await User.findByIdAndUpdate(req.params.id, {
+    const result = await User.findByIdAndUpdate(req.params.id, {
         $set: {
             username: req.body.username,
             email: req.body.email,
             password: req.body.password
         },
     },
-        {
+    {
             new: true
-        }).select('-password');
+    }).select('-password');
 
-    res.status(200).json(updateUser);
+    res.status(200).json(result);
 });
 
 
