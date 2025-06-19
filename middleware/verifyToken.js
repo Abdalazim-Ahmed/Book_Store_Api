@@ -1,14 +1,13 @@
 const jwt = require('jsonwebtoken');
 
 function verifyToken(req, res, next) {
-    const token = req.headers.token;
 
+    const token = req.headers.token;
     if (token) {
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
             req.user = decoded;
             next();
-
         } catch (error) {
             res.status(401).json({ message: "Invalid token" })
         }
@@ -17,7 +16,6 @@ function verifyToken(req, res, next) {
         res.status(401).json({ message: "No token provied" })
     }
 }
-
 
 
 function verfiyAndAuthorize(req, res, next) {
@@ -29,7 +27,9 @@ function verfiyAndAuthorize(req, res, next) {
             res.status(403).json({ message: "You are not allowd" })
         }
     })
-}
+};
+
+
 
 function verfiyAdmin(req, res, next) {
 
@@ -41,6 +41,7 @@ function verfiyAdmin(req, res, next) {
         }
     })
 }
+
 
 
 module.exports = {
