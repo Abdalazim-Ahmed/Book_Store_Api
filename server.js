@@ -17,12 +17,15 @@ const app = express();
 app.use(express.json());
 app.use(logger);
 
+app.set('view engine', 'ejs');
+
 
 // Routers
 app.use('/api/books', require('./routes/books'));
 app.use('/api/authors', require('./routes/authors'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
+app.use('/password', require('./routes/password'));
 
 
 // Middleware Error Handler
