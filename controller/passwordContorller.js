@@ -121,6 +121,3 @@ module.exports.sendResetPasswordView = async (req, res) => {
         res.json({ message: "Error" })
     }
 }
-
-
-
